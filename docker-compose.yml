@@ -1,0 +1,33 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    ports: ["27017:27017"]
+    volumes: ["mongo_data:/data/db"]
+    deploy:
+      resources:
+        limits: { cpus: "6", memory: 8g }
+
+  couchdb:
+    image: couchdb:3.3
+    ports: ["5984:5984"]
+    environment:
+      COUCHDB_USER: admin
+      COUCHDB_PASSWORD: password
+    volumes: ["couch_data:/opt/couchdb/data"]
+    deploy:
+      resources:
+        limits: { cpus: "6", memory: 8g }
+
+  couchbase:
+    image: couchbase:community-7.2.4
+    profiles: ["couchbase"]
+    ports: ["8091-8097:8091-8097", "11210:11210"]
+    volumes: ["cb_data:/opt/couchbase/var"]
+    deploy:
+      resources:
+        limits: { cpus: "6", memory: 8g }
+
+volumes:
+  mongo_data:
+  couch_data:
+  cb_data:
