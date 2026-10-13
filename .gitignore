@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+resultss/*
+!results/.gitkeep
+!result/README.md
