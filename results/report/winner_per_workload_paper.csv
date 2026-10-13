@@ -1,0 +1,4 @@
+records (artikel),A,B,C,D,E,F,G,H
+100000,CouchDB,MongoDB,MongoDB,MongoDB,MongoDB,MongoDB,MongoDB,MongoDB
+1000000,MongoDB,MongoDB,MongoDB,MongoDB,CouchDB,MongoDB,MongoDB,CouchDB
+10000000,MongoDB,MongoDB,MongoDB,MongoDB,CouchDB,MongoDB,MongoDB,CouchDB

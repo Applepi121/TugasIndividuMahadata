@@ -16,26 +16,26 @@ class Workload:
     proportions: dict
     request_distribution: str
 
-@property
-def has_inserts(self) -> bool:
-    return self.proportions.get(INSERT, 0) > 0
+    @property
+    def has_inserts(self) -> bool:
+        return self.proportions.get(INSERT, 0) > 0
 
-def chooser(self):
-    """Mengembalikan fungsi rng -> nama operasi sesuai proporsi yang ditentukan."""
-    ops, cum, acc = [], [], 0.0
-    for op, p in self.proportions.items():
-        acc += p
-        ops.append(op)
-        cum.append(acc)
+    def chooser(self):
+        """Mengembalikan fungsi rng -> nama operasi sesuai proporsi yang ditentukan."""
+        ops, cum, acc = [], [], 0.0
+        for op, p in self.proportions.items():
+            acc += p
+            ops.append(op)
+            cum.append(acc)
 
-    def choose(rng: random.Random) -> str:
-        r = rng.random() * acc
-        for op, c in zip(ops, cum):
-            if r < c:
-                return op
-        return ops[-1]
+        def choose(rng: random.Random) -> str:
+            r = rng.random() * acc
+            for op, c in zip(ops, cum):
+                if r < c:
+                    return op
+            return ops[-1]
 
-    return choose
+        return choose
 
 WORKLOADS: dict[str, Workload] = {
     "A": Workload("A", "Update Heavy", {READ: 0.5, UPDATE: 0.5}, "zipfian"),
